@@ -6,8 +6,8 @@ const Display = (props) => {
 
   return (
     <>
-      <div>{valorDisplay}</div>
-      <div>{simboloDisplay}</div>
+      <div id="valor">{valorDisplay}</div>
+      <div id="simbolo">{simboloDisplay}</div>
     </>
   );
 };
