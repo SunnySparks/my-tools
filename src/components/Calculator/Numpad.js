@@ -9,6 +9,7 @@ const Numpad = (props) => {
   const setValorDisplay = props.setValorDisplay;
   const setSimboloDisplay = props.setSimboloDisplay;
   const valorDisplay = props.valorDisplay;
+  const setSegundoValor = props.setSegundoValor;
 
   return (
     <div>
@@ -22,6 +23,7 @@ const Numpad = (props) => {
           simbolo={simbolo}
           setValorDisplay={setValorDisplay}
           valorDisplay={valorDisplay}
+          setSegundoValor={setSegundoValor}
         />
       ))}
     </div>
