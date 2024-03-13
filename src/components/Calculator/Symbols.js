@@ -15,15 +15,15 @@ const Symbols = (props) => {
         setValorDisplay(valorNeg);
         //return simbolo;
       } else if (simbolo == ".") {
-        let value = false;
+        let myDot = false;
         let tempValor = valorDisplay;
         tempValor = tempValor + ".";
         for (let i = 0; i < valorDisplay.length; i++) {
           if (valorDisplay[i] == ".") {
-            value = true;
+            myDot = true;
           }
         }
-        if (value == false) {
+        if (myDot == false) {
           setValorDisplay(tempValor);
         } else {
           return;
