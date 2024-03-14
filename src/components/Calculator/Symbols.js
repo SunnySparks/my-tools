@@ -39,6 +39,10 @@ const Symbols = (props) => {
           } else {
             return;
           }
+        } else if (simbolo === "C") {
+          setValorDisplay("0");
+          setSimboloDisplay("");
+          setSegundoValor("0");
         } else {
           if (valorDisplay !== "0") {
             setSegundoValor(valorDisplay);
@@ -53,14 +57,14 @@ const Symbols = (props) => {
           let total = 0;
           switch (simboloPrev) {
             case "+":
-              total = valorDisplay + segundoValor;
+              total = Number(valorDisplay) + Number(segundoValor);
               setValorDisplay(total);
               setSimboloDisplay("");
               setSegundoValor("0");
               console.log(total);
               break;
             case "-":
-              total = valorDisplay - segundoValor;
+              total = segundoValor - valorDisplay;
               setValorDisplay(total);
               setSimboloDisplay("");
               setSegundoValor("0");
@@ -72,7 +76,7 @@ const Symbols = (props) => {
               setSegundoValor("0");
               break;
             case "/":
-              total = valorDisplay / segundoValor;
+              total = segundoValor / valorDisplay;
               setValorDisplay(total);
               setSimboloDisplay("");
               setSegundoValor("0");
