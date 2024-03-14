@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 
 const Symbols = (props) => {
   const setSimboloDisplay = props.setSimboloDisplay;
@@ -8,28 +9,30 @@ const Symbols = (props) => {
   const setSegundoValor = props.setSegundoValor;
   const setResultDisplay = props.setResultDisplay;
   const segundoValor = props.segundoValor;
+  const simboloPrev = props.simboloPrev;
+  const setSimboloPrev = props.setSimboloPrev;
 
   const handleClick = () => {
     setSimboloDisplay((prev) => {
       if (simbolo !== "=") {
-        if (simbolo == "+-") {
+        if (simbolo === "+-") {
           const valorNeg = valorDisplay * -1;
           setValorDisplay(valorNeg);
-        } else if (simbolo == ".") {
+        } else if (simbolo === ".") {
           let myDot = false;
           let tempValor = valorDisplay;
           tempValor = tempValor + ".";
           for (let i = 0; i < valorDisplay.length; i++) {
-            if (valorDisplay[i] == ".") {
+            if (valorDisplay[i] === ".") {
               myDot = true;
             }
           }
-          if (myDot == false) {
+          if (myDot === false) {
             setValorDisplay(tempValor);
           } else {
             return;
           }
-        } else if (simbolo == "%") {
+        } else if (simbolo === "%") {
           if (segundoValor === "0") {
             let percentR = valorDisplay / 100;
             setValorDisplay(percentR);
@@ -38,17 +41,18 @@ const Symbols = (props) => {
           }
         } else {
           if (valorDisplay !== "0") {
-            setValorDisplay("0");
             setSegundoValor(valorDisplay);
+            setValorDisplay("0");
           }
+          let simboloAnterior = simbolo;
+          setSimboloPrev(simboloAnterior);
           return simbolo;
         }
       } else {
         if (segundoValor !== "0") {
           let total = 0;
-          switch (simbolo) {
+          switch (simboloPrev) {
             case "+":
-              console.log("simbolo mas");
               total = valorDisplay + segundoValor;
               setValorDisplay(total);
               setSimboloDisplay("");
@@ -76,7 +80,7 @@ const Symbols = (props) => {
             default:
               break;
           }
-        } else if (valorDisplay == "0" && segundoValor !== "0") {
+        } else if (valorDisplay === "0" && segundoValor !== "0") {
           //setValorDisplay(segundoValor);
           //setSegundoValor("0");
         } else {

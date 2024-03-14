@@ -8,6 +8,7 @@ const Calculator = (props) => {
   const [simboloDisplay, setSimboloDisplay] = useState("");
   const [segundoValor, setSegundoValor] = useState("0");
   const [resultDisplay, setResultDisplay] = useState("");
+  const [simboloPrev, setSimboloPrev] = useState("");
 
   return (
     <div>
@@ -24,6 +25,8 @@ const Calculator = (props) => {
         setSegundoValor={setSegundoValor}
         setResultDisplay={setResultDisplay}
         segundoValor={segundoValor}
+        setSimboloPrev={setSimboloPrev}
+        simboloPrev={simboloPrev}
       />
     </div>
   );

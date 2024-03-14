@@ -12,6 +12,8 @@ const Numpad = (props) => {
   const setSegundoValor = props.setSegundoValor;
   const setResultDisplay = props.setResultDisplay;
   const segundoValor = props.segundoValor;
+  const simboloPrev = props.simboloPrev;
+  const setSimboloPrev = props.setSimboloPrev;
 
   return (
     <div>
@@ -28,6 +30,8 @@ const Numpad = (props) => {
           setSegundoValor={setSegundoValor}
           setResultDisplay={setResultDisplay}
           segundoValor={segundoValor}
+          setSimboloPrev={setSimboloPrev}
+          simboloPrev={simboloPrev}
         />
       ))}
     </div>
