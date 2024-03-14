@@ -22,6 +22,8 @@ const Calculator = (props) => {
         setSimboloDisplay={setSimboloDisplay}
         valorDisplay={valorDisplay}
         setSegundoValor={setSegundoValor}
+        setResultDisplay={setResultDisplay}
+        segundoValor={segundoValor}
       />
     </div>
   );

@@ -7,7 +7,7 @@ const Display = (props) => {
 
   return (
     <>
-      <div id="valor">{valorDisplay}</div>
+      <div id="valor">{valorDisplay !== "0" ? valorDisplay : ""}</div>
       <div id="simbolo">{simboloDisplay}</div>
       <div id="segundoValor">{segundoValor !== "0" ? segundoValor : ""}</div>
     </>

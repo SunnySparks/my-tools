@@ -3,13 +3,15 @@ import Button from "./Button";
 import Symbols from "./Symbols";
 
 const listaBotones = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
-const listaSimbolos = ["+-", "%", "/", "*", "-", "+", "=", "."];
+const listaSimbolos = ["+-", "%", "/", "*", "-", "+", "=", ".", "C"];
 
 const Numpad = (props) => {
   const setValorDisplay = props.setValorDisplay;
   const setSimboloDisplay = props.setSimboloDisplay;
   const valorDisplay = props.valorDisplay;
   const setSegundoValor = props.setSegundoValor;
+  const setResultDisplay = props.setResultDisplay;
+  const segundoValor = props.segundoValor;
 
   return (
     <div>
@@ -24,6 +26,8 @@ const Numpad = (props) => {
           setValorDisplay={setValorDisplay}
           valorDisplay={valorDisplay}
           setSegundoValor={setSegundoValor}
+          setResultDisplay={setResultDisplay}
+          segundoValor={segundoValor}
         />
       ))}
     </div>
