@@ -48,6 +48,18 @@ const Symbols = (props) => {
             setSimboloDisplay("");
             setSegundoValor("0");
             break;
+          case "⌫":
+            let valorTemp = valorDisplay;
+            let valorArray = [];
+            if (valorDisplay !== "0") {
+              console.log(valorTemp.length);
+              for (let i = 0; i < valorTemp.length - 1; i++) {
+                console.log(valorTemp[i]);
+                valorArray.push(valorTemp[i]);
+              }
+              setValorDisplay(valorArray.toString().replace(/,/g, ""));
+            }
+            break;
           default:
             if (valorDisplay !== "0") {
               setSegundoValor(valorDisplay);
@@ -56,7 +68,6 @@ const Symbols = (props) => {
             let simboloAnterior = simbolo;
             setSimboloPrev(simboloAnterior);
             return simbolo;
-            break;
         }
       } else {
         if (segundoValor !== "0") {
