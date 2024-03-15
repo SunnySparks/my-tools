@@ -14,7 +14,11 @@ const Button = (props) => {
     });
   };
 
-  return <button onClick={handleClick}>{nombre}</button>;
+  return (
+    <button onClick={handleClick} id={nombre} class="numBtn">
+      {nombre}
+    </button>
+  );
 };
 
 export default Button;

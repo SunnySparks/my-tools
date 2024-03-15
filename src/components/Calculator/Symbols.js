@@ -15,42 +15,48 @@ const Symbols = (props) => {
   const handleClick = () => {
     setSimboloDisplay((prev) => {
       if (simbolo !== "=") {
-        if (simbolo === "+-") {
-          const valorNeg = valorDisplay * -1;
-          setValorDisplay(valorNeg);
-        } else if (simbolo === ".") {
-          let myDot = false;
-          let tempValor = valorDisplay;
-          tempValor = tempValor + ".";
-          for (let i = 0; i < valorDisplay.length; i++) {
-            if (valorDisplay[i] === ".") {
-              myDot = true;
+        switch (simbolo) {
+          case "+-":
+            const valorNeg = valorDisplay * -1;
+            setValorDisplay(valorNeg);
+            break;
+          case ".":
+            let myDot = false;
+            let tempValor = valorDisplay;
+            tempValor = tempValor + ".";
+            for (let i = 0; i < valorDisplay.length; i++) {
+              if (valorDisplay[i] === ".") {
+                myDot = true;
+              }
             }
-          }
-          if (myDot === false) {
-            setValorDisplay(tempValor);
-          } else {
-            return;
-          }
-        } else if (simbolo === "%") {
-          if (segundoValor === "0") {
-            let percentR = valorDisplay / 100;
-            setValorDisplay(percentR);
-          } else {
-            return;
-          }
-        } else if (simbolo === "C") {
-          setValorDisplay("0");
-          setSimboloDisplay("");
-          setSegundoValor("0");
-        } else {
-          if (valorDisplay !== "0") {
-            setSegundoValor(valorDisplay);
+            if (myDot === false) {
+              setValorDisplay(tempValor);
+            } else {
+              return;
+            }
+            break;
+          case "%":
+            if (segundoValor === "0") {
+              let percentR = valorDisplay / 100;
+              setValorDisplay(percentR);
+            } else {
+              return;
+            }
+            break;
+          case "C":
             setValorDisplay("0");
-          }
-          let simboloAnterior = simbolo;
-          setSimboloPrev(simboloAnterior);
-          return simbolo;
+            setSimboloDisplay("");
+            setSegundoValor("0");
+            break;
+          default:
+            if (valorDisplay !== "0") {
+              setSegundoValor(valorDisplay);
+              setValorDisplay("0");
+            }
+            let simboloAnterior = simbolo;
+            setSimboloPrev(simboloAnterior);
+            return simbolo;
+            break;
         }
       } else {
         if (segundoValor !== "0") {
@@ -84,9 +90,6 @@ const Symbols = (props) => {
             default:
               break;
           }
-        } else if (valorDisplay === "0" && segundoValor !== "0") {
-          //setValorDisplay(segundoValor);
-          //setSegundoValor("0");
         } else {
           return;
         }
@@ -94,7 +97,11 @@ const Symbols = (props) => {
     });
   };
 
-  return <button onClick={handleClick}>{simbolo}</button>;
+  return (
+    <button onClick={handleClick} id={simbolo} class="symBtn">
+      {simbolo}
+    </button>
+  );
 };
 
 export default Symbols;

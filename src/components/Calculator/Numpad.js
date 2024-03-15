@@ -3,7 +3,7 @@ import Button from "./Button";
 import Symbols from "./Symbols";
 
 const listaBotones = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
-const listaSimbolos = ["+-", "%", "/", "*", "-", "+", "=", ".", "C"];
+const listaSimbolos = ["+-", "%", "/", "*", "-", "+", "=", ".", "C", "⌫"];
 
 const Numpad = (props) => {
   const setValorDisplay = props.setValorDisplay;
