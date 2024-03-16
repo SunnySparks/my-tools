@@ -13,6 +13,33 @@ const Symbols = (props) => {
   const setSimboloPrev = props.setSimboloPrev;
 
   const handleClick = () => {
+    if (simbolo == "⌫") {
+      let valorTemp = valorDisplay;
+      let valorArray = [];
+      if (valorDisplay !== "0") {
+        let simboloAnterior = simbolo;
+        for (let i = 0; i < valorTemp.length - 1; i++) {
+          valorArray.push(valorTemp[i]);
+        }
+        setValorDisplay(valorArray.toString().replace(/,/g, ""));
+        if (valorDisplay.length == 0) {
+          setValorDisplay("0");
+        }
+        return;
+      } else if (
+        (segundoValor !== "0" && valorDisplay === "0") ||
+        (segundoValor !== "0" && valorDisplay.length == 0)
+      ) {
+        let valorTemp = segundoValor;
+        let simboloAnterior = simbolo;
+        for (let i = 0; i < valorTemp.length - 1; i++) {
+          valorArray.push(valorTemp[i]);
+        }
+        setSegundoValor(valorArray.toString().replace(/,/g, ""));
+        return;
+      }
+      return;
+    }
     setSimboloDisplay((prev) => {
       if (simbolo !== "=") {
         switch (simbolo) {
@@ -48,10 +75,11 @@ const Symbols = (props) => {
             setSimboloDisplay("");
             setSegundoValor("0");
             break;
-          case "⌫":
+          /*case "⌫":
             let valorTemp = valorDisplay;
             let valorArray = [];
             if (valorDisplay !== "0") {
+              let simboloAnterior = simbolo;
               console.log(valorTemp.length);
               for (let i = 0; i < valorTemp.length - 1; i++) {
                 console.log(valorTemp[i]);
@@ -59,7 +87,7 @@ const Symbols = (props) => {
               }
               setValorDisplay(valorArray.toString().replace(/,/g, ""));
             }
-            break;
+            break;*/
           default:
             if (valorDisplay !== "0") {
               setSegundoValor(valorDisplay);
@@ -78,7 +106,6 @@ const Symbols = (props) => {
               setValorDisplay(total);
               setSimboloDisplay("");
               setSegundoValor("0");
-              console.log(total);
               break;
             case "-":
               total = segundoValor - valorDisplay;
