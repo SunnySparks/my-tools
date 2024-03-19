@@ -1,9 +1,15 @@
 import React, { useState } from "react";
 
-const FormTodo = () => {
+const FormTodo = (props) => {
   const [taskInfo, setTaskInfo] = useState("");
+  const { handleAddItem } = props;
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(taskInfo);
+    setTaskInfo("");
+  };
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <div id="todoCont">
         <div id="todoInner">
           <input
