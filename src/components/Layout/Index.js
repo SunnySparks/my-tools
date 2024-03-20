@@ -10,7 +10,6 @@ const Layout = ({ children, navOptions = [] }) => {
       <Calculator />
       <TodoContainer />
       <main>{children}</main>
-      <div>hiiiiiiiii</div>
       {/* <Style></Style> */}
     </>
   );

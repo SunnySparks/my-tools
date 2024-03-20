@@ -1,11 +1,17 @@
 import React, { useState } from "react";
 
 const FormTodo = (props) => {
+  const handleAddItem = props.handleAddItem;
+
   const [taskInfo, setTaskInfo] = useState("");
-  const { handleAddItem } = props;
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(taskInfo);
+    handleAddItem({
+      done: false,
+      id: (+new Date()).toString(),
+      taskInfo,
+    });
     setTaskInfo("");
   };
   return (
