@@ -2,6 +2,7 @@ import React from "react";
 import Header from "./Header";
 import Calculator from "../Calculator/Calculator";
 import TodoContainer from "../Todo/TodoContainer";
+import Calendar from "../Calendar/Calendar";
 
 const Layout = ({ children, navOptions = [] }) => {
   return (
@@ -9,6 +10,7 @@ const Layout = ({ children, navOptions = [] }) => {
       <Header navOptions={navOptions} />
       <Calculator />
       <TodoContainer />
+      <Calendar />
       <main>{children}</main>
       {/* <Style></Style> */}
     </>
