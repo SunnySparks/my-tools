@@ -11,83 +11,112 @@ const Symbols = (props) => {
   const segundoValor = props.segundoValor;
   const simboloPrev = props.simboloPrev;
   const setSimboloPrev = props.setSimboloPrev;
+  let total = 0;
+
+  const erase = () => {
+    let valorTemp = valorDisplay;
+    let valorArray = [];
+    if (valorDisplay !== "0") {
+      let simboloAnterior = simbolo;
+      for (let i = 0; i < valorTemp.length - 1; i++) {
+        valorArray.push(valorTemp[i]);
+      }
+      setValorDisplay(valorArray.toString().replace(/,/g, ""));
+      if (valorDisplay.length == 0) {
+        setValorDisplay("0");
+      }
+    } else if (
+      (segundoValor !== "0" && valorDisplay === "0") ||
+      (segundoValor !== "0" && valorDisplay.length == 0)
+    ) {
+      let valorTemp = segundoValor;
+      let simboloAnterior = simbolo;
+      for (let i = 0; i < valorTemp.length - 1; i++) {
+        valorArray.push(valorTemp[i]);
+      }
+      setSegundoValor(valorArray.toString().replace(/,/g, ""));
+    }
+  };
+
+  const posNeg = () => {
+    const valorNeg = valorDisplay * -1;
+    setValorDisplay(valorNeg);
+  };
+
+  const addDecimal = () => {
+    let myDot = false;
+    let tempValor = valorDisplay;
+    tempValor = tempValor + ".";
+    for (let i = 0; i < valorDisplay.length; i++) {
+      if (valorDisplay[i] === ".") {
+        myDot = true;
+      }
+    }
+    if (myDot === false) {
+      setValorDisplay(tempValor);
+    } else {
+      return;
+    }
+  };
+
+  const doPercent = () => {
+    if (segundoValor === "0") {
+      let percentR = valorDisplay / 100;
+      setValorDisplay(percentR);
+    } else {
+      return;
+    }
+  };
+
+  const reset = () => {
+    setValorDisplay("0");
+    setSimboloDisplay("");
+    setSegundoValor("0");
+  };
+
+  const afterOpSetter = () => {
+    setValorDisplay(total);
+    setSimboloDisplay("");
+    setSegundoValor("0");
+  };
+
+  const sumOperator = () => {
+    total = Number(valorDisplay) + Number(segundoValor);
+  };
+
+  const minOperator = () => {
+    total = segundoValor - valorDisplay;
+  };
+
+  const multOperator = () => {
+    total = valorDisplay * segundoValor;
+  };
+
+  const divOperator = () => {
+    total = segundoValor / valorDisplay;
+  };
 
   const handleClick = () => {
     if (simbolo == "⌫") {
-      let valorTemp = valorDisplay;
-      let valorArray = [];
-      if (valorDisplay !== "0") {
-        let simboloAnterior = simbolo;
-        for (let i = 0; i < valorTemp.length - 1; i++) {
-          valorArray.push(valorTemp[i]);
-        }
-        setValorDisplay(valorArray.toString().replace(/,/g, ""));
-        if (valorDisplay.length == 0) {
-          setValorDisplay("0");
-        }
-        return;
-      } else if (
-        (segundoValor !== "0" && valorDisplay === "0") ||
-        (segundoValor !== "0" && valorDisplay.length == 0)
-      ) {
-        let valorTemp = segundoValor;
-        let simboloAnterior = simbolo;
-        for (let i = 0; i < valorTemp.length - 1; i++) {
-          valorArray.push(valorTemp[i]);
-        }
-        setSegundoValor(valorArray.toString().replace(/,/g, ""));
-        return;
-      }
-      return;
+      erase();
+      return; //Had to keep this return in the code, otherwise it will imput the delete icon on the calculator and will take an extra click to start deleting
     }
     setSimboloDisplay((prev) => {
+      console.log(simbolo);
       if (simbolo !== "=") {
         switch (simbolo) {
           case "+-":
-            const valorNeg = valorDisplay * -1;
-            setValorDisplay(valorNeg);
+            posNeg();
             break;
           case ".":
-            let myDot = false;
-            let tempValor = valorDisplay;
-            tempValor = tempValor + ".";
-            for (let i = 0; i < valorDisplay.length; i++) {
-              if (valorDisplay[i] === ".") {
-                myDot = true;
-              }
-            }
-            if (myDot === false) {
-              setValorDisplay(tempValor);
-            } else {
-              return;
-            }
+            addDecimal();
             break;
           case "%":
-            if (segundoValor === "0") {
-              let percentR = valorDisplay / 100;
-              setValorDisplay(percentR);
-            } else {
-              return;
-            }
+            doPercent();
             break;
           case "C":
-            setValorDisplay("0");
-            setSimboloDisplay("");
-            setSegundoValor("0");
+            reset();
             break;
-          /*case "⌫":
-            let valorTemp = valorDisplay;
-            let valorArray = [];
-            if (valorDisplay !== "0") {
-              let simboloAnterior = simbolo;
-              console.log(valorTemp.length);
-              for (let i = 0; i < valorTemp.length - 1; i++) {
-                console.log(valorTemp[i]);
-                valorArray.push(valorTemp[i]);
-              }
-              setValorDisplay(valorArray.toString().replace(/,/g, ""));
-            }
-            break;*/
           default:
             if (valorDisplay !== "0") {
               setSegundoValor(valorDisplay);
@@ -99,31 +128,22 @@ const Symbols = (props) => {
         }
       } else {
         if (segundoValor !== "0") {
-          let total = 0;
           switch (simboloPrev) {
             case "+":
-              total = Number(valorDisplay) + Number(segundoValor);
-              setValorDisplay(total);
-              setSimboloDisplay("");
-              setSegundoValor("0");
+              sumOperator();
+              afterOpSetter();
               break;
             case "-":
-              total = segundoValor - valorDisplay;
-              setValorDisplay(total);
-              setSimboloDisplay("");
-              setSegundoValor("0");
+              minOperator();
+              afterOpSetter();
               break;
             case "*":
-              total = valorDisplay * segundoValor;
-              setValorDisplay(total);
-              setSimboloDisplay("");
-              setSegundoValor("0");
+              multOperator();
+              afterOpSetter();
               break;
             case "/":
-              total = segundoValor / valorDisplay;
-              setValorDisplay(total);
-              setSimboloDisplay("");
-              setSegundoValor("0");
+              divOperator();
+              afterOpSetter();
               break;
             default:
               break;
